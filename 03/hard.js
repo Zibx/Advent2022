@@ -1,4 +1,3 @@
-
 document.body.innerText
 	.trim()
 	.split( '\n' )
@@ -12,23 +11,26 @@ document.body.innerText
 	}, {groups: [], current: []})
 	.groups
 	.map(group => ({
-		rucksuckHash: group[0].split('').reduce((store, letter)=>{store[letter] = true; return store;}, {} ),
+		rucksackHash: group[0].split('').reduce((store, letter)=>{store[letter] = true; return store;}, {} ),
 		group
 	}))
 	.map(obj => ({
-		rucksuckHash: obj.group[1].split('').reduce((store, letter) => {
-			if(letter in obj.rucksuckHash) store[letter] = true;
+		rucksackHash: obj.group[1].split('').reduce((store, letter) => {
+			if(letter in obj.rucksackHash) store[letter] = true;
 			return store;
 		}, {}),
 		group: obj.group
 	}))
 	.map(obj => ({
-		rucksuckHash: obj.group[2].split('').reduce((store, letter) => {
-			if(letter in obj.rucksuckHash) store[letter] = true;
+		rucksackHash: obj.group[2].split('').reduce((store, letter) => {
+			if(letter in obj.rucksackHash) store[letter] = true;
 			return store;
 		}, {}),
 		group: obj.group
 	}))
-	.map(obj => Object.keys(obj.rucksuckHash)[0])
-	.map((letter, _, __, ___, isLower = letter.toLowerCase() === letter) => letter.charCodeAt(0) - (isLower? 'a' : 'A').charCodeAt(0) + (isLower?1: 27) )
+	.map(obj => Object.keys(obj.rucksackHash)[0])
+	.map((letter, _, __, ___,
+		  isLower = letter.toLowerCase() === letter
+	) =>
+		letter.charCodeAt(0) - (isLower? 'a' : 'A').charCodeAt(0) + (isLower?1: 27) )
 	.reduce((a,b)=>a+b)
