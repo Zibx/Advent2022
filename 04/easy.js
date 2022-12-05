@@ -9,7 +9,8 @@ document.body.innerText
 					.split('-')
 					.map(Number)
 
-			).map(arr=>({from:arr[0], to: arr[1]}))
+			)
+			.map(arr=>({from: arr[0], to: arr[1]}))
 	)
 	.filter(pair =>
 		(pair[0].from <= pair[1].from && pair[0].to >= pair[1].to) ||
